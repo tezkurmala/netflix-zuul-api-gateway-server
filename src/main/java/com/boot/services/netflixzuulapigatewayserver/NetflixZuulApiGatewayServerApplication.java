@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
+import brave.sampler.Sampler;
+
 //Tez notes:
 //Normal we access the micro service directly like
 //http://localhost:spring-application-server-port/{request-uri}
@@ -23,4 +25,7 @@ public class NetflixZuulApiGatewayServerApplication {
 		SpringApplication.run(NetflixZuulApiGatewayServerApplication.class, args);
 	}
 
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
 }
